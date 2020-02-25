@@ -84,7 +84,7 @@ jobs:
             rm BOOT-INF/classes/META-INF/build-info.properties
 
             # make up a good version name
-            [[ "${CIRCLE_BRANCH}" == "master" ]] && echo "${APP_VERSION}" || echo "${APP_VERSION}.${CIRCLE_BRANCH}" > ./app_version.txt
+            ( [[ "$CIRCLE_BRANCH" == "master" ]] && echo "$APP_VERSION" || echo "$APP_VERSION.$CIRCLE_BRANCH" ) > ./app_version.txt
 
       - save_cache:
           paths:
