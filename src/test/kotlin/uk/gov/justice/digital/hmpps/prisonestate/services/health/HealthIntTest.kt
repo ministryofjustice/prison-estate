@@ -1,8 +1,10 @@
 package uk.gov.justice.digital.hmpps.prisonestate.services.health
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter.ISO_DATE
+import java.util.function.Consumer
 
 class HealthIntTest : IntegrationTest() {
   @Test
@@ -26,6 +28,8 @@ class HealthIntTest : IntegrationTest() {
     webTestClient.get().uri("/health")
         .exchange()
         .expectStatus().isOk
-        .expectBody().jsonPath("components.healthInfo.details.version").isEqualTo(LocalDateTime.now().format(ISO_DATE))
+        .expectBody().jsonPath("components.healthInfo.details.version").value(Consumer<String> {
+          assertThat(it).startsWith(LocalDateTime.now().format(ISO_DATE))
+        })
   }
 }
