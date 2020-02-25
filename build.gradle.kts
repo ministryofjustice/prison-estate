@@ -98,18 +98,10 @@ dependencies {
   implementation("com.microsoft.azure:applicationinsights-logging-logback:2.5.1")
   implementation("com.github.timpeeters:spring-boot-graceful-shutdown:2.2.0")
 
-  implementation("javax.transaction:javax.transaction-api:1.3")
-  implementation("javax.xml.bind:jaxb-api:2.3.1")
-  implementation("com.sun.xml.bind:jaxb-impl:2.3.2")
-  implementation("com.sun.xml.bind:jaxb-core:2.3.0.1")
-  implementation("com.google.code.gson:gson:2.8.6")
-
-  implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.2")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
-  testImplementation("com.github.tomakehurst:wiremock-standalone:2.26.0")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.13.0")
   testImplementation("com.nhaarman:mockito-kotlin-kt1.1:1.6.0")
 }
