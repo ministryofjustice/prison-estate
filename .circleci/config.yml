@@ -163,6 +163,25 @@ workflows:
           filters:
             branches:
               only: master
+      - deploy_dev:
+          requires:
+            - build_docker
+      - request-preprod-approval:
+          type: approval
+          requires:
+            - deploy_dev
+      - deploy_preprod:
+          context: prison-estate-preprod
+          requires:
+            - request-preprod-approval
+      - request-prod-approval:
+          type: approval
+          requires:
+            - deploy_preprod
+      - deploy_prod:
+          context: prison-estate-prod
+          requires:
+            - request-prod-approval
   scheduled:
     triggers:
       - schedule:
