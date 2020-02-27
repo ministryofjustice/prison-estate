@@ -21,7 +21,7 @@ data class Prison(
 
   @OneToOne
   @JoinColumn("prison_id")
-  val gpPractice: PrisonGpPractice? = null
+  var gpPractice: PrisonGpPractice? = null
 }
 
 @Entity

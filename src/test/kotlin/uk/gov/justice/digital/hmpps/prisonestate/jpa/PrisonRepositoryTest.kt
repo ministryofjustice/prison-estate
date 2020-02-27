@@ -51,10 +51,10 @@ class PrisonRepositoryTest {
   @Test
   fun `should get active prisons`() {
     val activePrisons = prisonRepository.findByActiveOrderByPrisonId(true)
-    assertThat(activePrisons).hasSizeGreaterThan(100)
+    assertThat(activePrisons).hasSizeGreaterThan(100).allMatch { it.active }
 
     val inActivePrisons = prisonRepository.findByActiveOrderByPrisonId(false)
-    assertThat(inActivePrisons).hasSizeGreaterThan(40)
+    assertThat(inActivePrisons).hasSizeGreaterThan(40).allMatch { !it.active }
 
     val allPrisons = prisonRepository.findAll()
     assertThat(allPrisons).hasSize(activePrisons.size + inActivePrisons.size)

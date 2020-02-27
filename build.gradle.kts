@@ -91,8 +91,10 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.boot:spring-boot-starter-actuator")
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-  implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.4.1")
+
+  implementation("io.springfox:springfox-swagger2:2.9.2")
+  implementation("io.springfox:springfox-swagger-ui:2.9.2")
+  implementation("io.springfox:springfox-bean-validators:2.9.2")
 
   runtimeOnly("com.h2database:h2:1.4.200")
   runtimeOnly("org.flywaydb:flyway-core:6.2.4")
@@ -105,7 +107,9 @@ dependencies {
 
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2")
 
-  testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.springframework.boot:spring-boot-starter-test") {
+    exclude("org.junit.vintage", "junit-vintage-engine")
+  }
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.13.0")
   testImplementation("com.nhaarman:mockito-kotlin-kt1.1:1.6.0")

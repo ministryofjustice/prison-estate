@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.prisonestate.services.health
+package uk.gov.justice.digital.hmpps.prisonestate.resource
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
