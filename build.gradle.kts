@@ -90,8 +90,13 @@ dependencies {
 
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.boot:spring-boot-starter-actuator")
+  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
   implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
   implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.4.1")
+
+  runtimeOnly("com.h2database:h2:1.4.200")
+  runtimeOnly("org.flywaydb:flyway-core:6.2.4")
+  runtimeOnly("org.postgresql:postgresql:42.2.10")
 
   implementation("net.logstash.logback:logstash-logback-encoder:6.3")
   implementation("com.microsoft.azure:applicationinsights-spring-boot-starter:2.5.1")

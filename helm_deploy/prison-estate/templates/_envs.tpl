@@ -18,4 +18,28 @@ env:
       secretKeyRef:
         name: {{ template "app.name" . }}
         key: APPINSIGHTS_INSTRUMENTATIONKEY
+
+  - name: SPRING_DATABASE_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: dps-rds-instance-output
+        key: database_username
+
+  - name: SPRING_DATABASE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: dps-rds-instance-output
+        key: database_password
+
+  - name: DATABASE_NAME
+    valueFrom:
+      secretKeyRef:
+        name: dps-rds-instance-output
+        key: database_name
+
+  - name: DATABASE_ENDPOINT
+    valueFrom:
+      secretKeyRef:
+        name: dps-rds-instance-output
+        key: rds_instance_endpoint
 {{- end -}}

@@ -4,3 +4,10 @@ graceful:
 management.endpoint:
   health.cache.time-to-live: 0
   info.cache.time-to-live: 0
+
+spring:
+  datasource:
+    url: 'jdbc:h2:mem:prison-estate-db;MODE=PostgreSQL'
+  h2:
+    console:
+      enabled: true
