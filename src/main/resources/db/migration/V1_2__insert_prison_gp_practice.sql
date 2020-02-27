@@ -53,7 +53,6 @@ INSERT INTO prison_gp_practice VALUES ('HMI', 'Y05528');
 INSERT INTO prison_gp_practice VALUES ('HCI', 'Y03223');
 INSERT INTO prison_gp_practice VALUES ('ISI', 'Y05765');
 INSERT INTO prison_gp_practice VALUES ('IWI', 'Y05532');
-INSERT INTO prison_gp_practice VALUES ('IWI', 'Y05534');
 INSERT INTO prison_gp_practice VALUES ('KMI', 'Y05551');
 INSERT INTO prison_gp_practice VALUES ('KVI', 'Y04674');
 INSERT INTO prison_gp_practice VALUES ('LFI', 'Y05531');

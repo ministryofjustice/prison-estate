@@ -8,7 +8,9 @@ import javax.persistence.JoinColumn
 import javax.persistence.OneToOne
 
 @Repository
-interface PrisonRepository : CrudRepository<Prison, String>
+interface PrisonRepository : CrudRepository<Prison, String> {
+  fun findByActiveOrderByPrisonId(active: Boolean): List<Prison>
+}
 
 @Entity
 data class Prison(
