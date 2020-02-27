@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/prison-estate-db
+    username: admin
+    password: admin_password
+

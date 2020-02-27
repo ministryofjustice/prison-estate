@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  prison-estate:
+    image: quay.io/hmpps/prison-estate:latest
+    networks:
+      - hmpps
+    container_name: prison-estate
+    depends_on:
+      - prison-estate-db
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health/ping"]
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres
+
+  prison-estate-db:
+    image: postgres
+    networks:
+      - hmpps
+    container_name: prison-estate-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=admin_password
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=prison-estate-db
+
+networks:
+  hmpps:
