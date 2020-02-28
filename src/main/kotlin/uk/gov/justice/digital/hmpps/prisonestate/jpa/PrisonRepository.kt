@@ -2,6 +2,7 @@ package uk.gov.justice.digital.hmpps.prisonestate.jpa
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
+import java.util.*
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.JoinColumn
@@ -10,6 +11,8 @@ import javax.persistence.OneToOne
 @Repository
 interface PrisonRepository : CrudRepository<Prison, String> {
   fun findByActiveOrderByPrisonId(active: Boolean): List<Prison>
+
+  fun findByGpPracticeGpPracticeCode(gpPracticeCode: String): Optional<Prison>
 }
 
 @Entity

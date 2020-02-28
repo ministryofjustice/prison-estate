@@ -17,7 +17,6 @@ class PrisonResourceTest : IntegrationTest() {
   @Suppress("ClassName")
   @Nested
   inner class findById {
-
     @Test
     fun `find prison`() {
       val prison = Prison("MDI", "Moorland (HMP & YOI)", true)
@@ -48,7 +47,44 @@ class PrisonResourceTest : IntegrationTest() {
       webTestClient.get().uri("/prisons/id/1234")
           .exchange()
           .expectStatus().isBadRequest
-          .expectBody().json("prison_id_badrequest".loadJson())
+          .expectBody().json("prison_id_badrequest_getPrisonFromId".loadJson())
+    }
+  }
+
+  @Suppress("ClassName")
+  @Nested
+  inner class findByGpPractice {
+    @Test
+    fun `find prison`() {
+      val prison = Prison("MDI", "Moorland (HMP & YOI)", true)
+      prison.gpPractice = PrisonGpPractice("MDI", "Y05537")
+      whenever(prisonRepository.findByGpPracticeGpPracticeCode(anyString())).thenReturn(
+          Optional.of(prison)
+      )
+      webTestClient.get().uri("/prisons/gp-practice/Y05537")
+          .exchange()
+          .expectStatus().isOk
+          .expectBody().json("prison_id_mdi".loadJson())
+    }
+
+    @Test
+    fun `find prison no gp practice mapped`() {
+      val prison = Prison("MDI", "Moorland (HMP & YOI)", true)
+      whenever(prisonRepository.findByGpPracticeGpPracticeCode(anyString())).thenReturn(
+          Optional.of(prison)
+      )
+      webTestClient.get().uri("/prisons/gp-practice/Y05537")
+          .exchange()
+          .expectStatus().isOk
+          .expectBody().json("prison_id_mdi_no_gp".loadJson())
+    }
+
+    @Test
+    fun `find prison validation failure`() {
+      webTestClient.get().uri("/prisons/gp-practice/1234567")
+          .exchange()
+          .expectStatus().isBadRequest
+          .expectBody().json("prison_id_badrequest_getPrisonFromGpPrescriber".loadJson())
     }
   }
 

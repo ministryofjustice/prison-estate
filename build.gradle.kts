@@ -11,7 +11,7 @@ plugins {
   kotlin("jvm") version "1.3.61"
   kotlin("plugin.spring") version "1.3.61"
   kotlin("plugin.jpa") version "1.3.61"
-  id("org.springframework.boot") version "2.2.4.RELEASE"
+  id("org.springframework.boot") version "2.2.5.RELEASE"
   id("io.spring.dependency-management") version "1.0.9.RELEASE"
   id("org.owasp.dependencycheck") version "5.3.0"
   id("com.github.ben-manes.versions") version "0.28.0"
@@ -106,12 +106,12 @@ dependencies {
   implementation("com.github.timpeeters:spring-boot-graceful-shutdown:2.2.0")
 
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2")
+  implementation("com.google.guava:guava:28.2-jre")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test") {
     exclude("org.junit.vintage", "junit-vintage-engine")
   }
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
-  testImplementation("net.javacrumbs.json-unit:json-unit-assertj:2.13.0")
   testImplementation("com.nhaarman:mockito-kotlin-kt1.1:1.6.0")
 }
 
