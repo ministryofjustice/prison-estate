@@ -1,0 +1,7 @@
+{
+  "status": 400,
+  "errorCode": null,
+  "userMessage": null,
+  "developerMessage": "getPrisonFromGpPrescriber.prisonId: size must be between 0 and 3",
+  "moreInfo": null
+}

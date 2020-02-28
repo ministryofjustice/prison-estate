@@ -18,13 +18,23 @@ import javax.validation.constraints.Size
 @Validated
 @RequestMapping("/prisons", produces = [MediaType.APPLICATION_JSON_VALUE])
 class PrisonResource(private val prisonService: PrisonService) {
-  @GetMapping("/id/{prison_id}")
+  @GetMapping("/id/{prisonId}")
   @ApiOperation("Get specified prison")
   @ApiResponses(value = [
     ApiResponse(code = 400, message = "Bad request.  Wrong format for prison_id.", response = ErrorResponse::class),
-    ApiResponse(code = 404, message = "Not a digital prison.  Prison not found.", response = ErrorResponse::class)
+    ApiResponse(code = 404, message = "Prison not found.", response = ErrorResponse::class)
   ])
-  fun get(@ApiParam("Prison ID", example = "MDI") @PathVariable("prison_id") @Size(max = 3) prisonId: String): PrisonDto = prisonService.findById(prisonId)
+  fun getPrisonFromId(@ApiParam("Prison ID", example = "MDI") @PathVariable @Size(max = 3) prisonId: String): PrisonDto =
+      prisonService.findById(prisonId)
+
+  @GetMapping("/gp-practice/{gpPracticeCode}")
+  @ApiOperation("Get specified prison from GP practice code")
+  @ApiResponses(value = [
+    ApiResponse(code = 400, message = "Bad request.  Wrong format for GP practice code.", response = ErrorResponse::class),
+    ApiResponse(code = 404, message = "No prison linked to the GP practice code.", response = ErrorResponse::class)
+  ])
+  fun getPrisonFromGpPrescriber(@ApiParam("GP Practice Code", example = "Y05537") @PathVariable @Size(max = 6) gpPracticeCode: String): PrisonDto =
+      prisonService.findByGpPractice(gpPracticeCode)
 }
 
 @ApiModel("Prison and GP Practice Information")

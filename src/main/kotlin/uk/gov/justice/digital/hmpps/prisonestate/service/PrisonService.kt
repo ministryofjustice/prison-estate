@@ -8,7 +8,14 @@ import javax.persistence.EntityNotFoundException
 @Service
 class PrisonService(private val prisonRepository: PrisonRepository) {
   fun findById(prisonId: String): PrisonDto {
-    val prison = prisonRepository.findById(prisonId).orElseThrow { EntityNotFoundException("Prison $prisonId not found") }
+    val prison = prisonRepository.findById(prisonId)
+        .orElseThrow { EntityNotFoundException("Prison $prisonId not found") }
+    return PrisonDto(prison)
+  }
+
+  fun findByGpPractice(gpPracticeCode: String): PrisonDto {
+    val prison = prisonRepository.findByGpPracticeGpPracticeCode(gpPracticeCode)
+        .orElseThrow { EntityNotFoundException("Prison with gp practice $gpPracticeCode not found") }
     return PrisonDto(prison)
   }
 }

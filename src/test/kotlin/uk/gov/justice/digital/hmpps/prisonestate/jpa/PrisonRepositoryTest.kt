@@ -59,4 +59,10 @@ class PrisonRepositoryTest {
     val allPrisons = prisonRepository.findAll()
     assertThat(allPrisons).hasSize(activePrisons.size + inActivePrisons.size)
   }
+
+  @Test
+  fun `should find prison by gp practice code`() {
+    val prison = prisonRepository.findByGpPracticeGpPracticeCode("Y05537")
+    assertThat(prison).get().isEqualTo(Prison("MDI", "Moorland (HMP & YOI)", true))
+  }
 }

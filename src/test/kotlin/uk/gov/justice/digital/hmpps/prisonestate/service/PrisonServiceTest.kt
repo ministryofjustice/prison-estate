@@ -47,4 +47,26 @@ class PrisonServiceTest {
       assertThat(prisonDto).isEqualTo(PrisonDto("MDI", "Name", true, null))
     }
   }
+
+  @Suppress("ClassName")
+  @Nested
+  inner class findByGpPractice {
+    @Test
+    fun `find prison from gp practice`() {
+      val prison = Prison("MDI", "Name", true)
+      prison.gpPractice = PrisonGpPractice("MDI", "A12345")
+      whenever(prisonRepository.findByGpPracticeGpPracticeCode(anyString())).thenReturn(
+          Optional.of(prison))
+      val prisonDto = prisonService.findByGpPractice("MDI")
+      assertThat(prisonDto).isEqualTo(PrisonDto("MDI", "Name", true, "A12345"))
+    }
+
+    @Test
+    fun `find prison not found`() {
+      whenever(prisonRepository.findByGpPracticeGpPracticeCode(anyString())).thenReturn(
+          Optional.of(Prison("MDI", "Name", true)))
+      val prisonDto = prisonService.findByGpPractice("MDI")
+      assertThat(prisonDto).isEqualTo(PrisonDto("MDI", "Name", true, null))
+    }
+  }
 }
