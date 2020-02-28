@@ -2,6 +2,6 @@
   "status": 400,
   "errorCode": null,
   "userMessage": null,
-  "developerMessage": "getPrisonFromGpPrescriber.prisonId: size must be between 0 and 3",
+  "developerMessage": "getPrisonFromGpPrescriber.gpPracticeCode: size must be between 0 and 6",
   "moreInfo": null
 }
