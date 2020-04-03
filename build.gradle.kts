@@ -8,14 +8,15 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter.ISO_DATE
 
 plugins {
-  kotlin("jvm") version "1.3.61"
-  kotlin("plugin.spring") version "1.3.61"
-  kotlin("plugin.jpa") version "1.3.61"
-  id("org.springframework.boot") version "2.2.5.RELEASE"
+  kotlin("jvm") version "1.3.71"
+  kotlin("plugin.spring") version "1.3.71"
+  kotlin("plugin.jpa") version "1.3.71"
+  id("org.springframework.boot") version "2.2.6.RELEASE"
   id("io.spring.dependency-management") version "1.0.9.RELEASE"
-  id("org.owasp.dependencycheck") version "5.3.0"
+  id("org.owasp.dependencycheck") version "5.3.2.1"
   id("com.github.ben-manes.versions") version "0.28.0"
   id("com.gorylenko.gradle-git-properties") version "2.2.2"
+  id("se.patrikerdes.use-latest-versions") version "0.2.13"
 }
 
 repositories {
@@ -57,17 +58,15 @@ tasks.withType<DependencyUpdatesTask> {
 group = "uk.gov.justice.digital.hmpps"
 
 val todaysDate: String = LocalDate.now().format(ISO_DATE)
-val today: Instant = Instant.now()
-version = if (System.getenv().contains("CI")) "${todaysDate}.${System.getenv("CIRCLE_BUILD_NUM")}" else todaysDate
+version = if (System.getenv().contains("BUILD_NUMBER")) System.getenv("BUILD_NUMBER") else todaysDate
 
 springBoot {
   buildInfo {
     properties {
-      time = today
+      time = Instant.now()
       additional = mapOf(
           "by" to System.getProperty("user.name"),
           "operatingSystem" to "${System.getProperty("os.name")} (${System.getProperty("os.version")})",
-          "continuousIntegration" to System.getenv().containsKey("CI"),
           "machine" to InetAddress.getLocalHost().hostName
       )
     }
@@ -97,22 +96,22 @@ dependencies {
   implementation("io.springfox:springfox-bean-validators:2.9.2")
 
   runtimeOnly("com.h2database:h2:1.4.200")
-  runtimeOnly("org.flywaydb:flyway-core:6.2.4")
-  runtimeOnly("org.postgresql:postgresql:42.2.10")
+  runtimeOnly("org.flywaydb:flyway-core:6.3.2")
+  runtimeOnly("org.postgresql:postgresql:42.2.12")
 
   implementation("net.logstash.logback:logstash-logback-encoder:6.3")
-  implementation("com.microsoft.azure:applicationinsights-spring-boot-starter:2.5.1")
-  implementation("com.microsoft.azure:applicationinsights-logging-logback:2.5.1")
-  implementation("com.github.timpeeters:spring-boot-graceful-shutdown:2.2.0")
+  implementation("com.microsoft.azure:applicationinsights-spring-boot-starter:2.6.0")
+  implementation("com.microsoft.azure:applicationinsights-logging-logback:2.6.0")
+  implementation("com.github.timpeeters:spring-boot-graceful-shutdown:2.2.1")
 
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   implementation("com.google.guava:guava:28.2-jre")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test") {
     exclude("org.junit.vintage", "junit-vintage-engine")
   }
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
-  testImplementation("com.nhaarman:mockito-kotlin-kt1.1:1.6.0")
+  testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
 
 tasks {
@@ -120,7 +119,7 @@ tasks {
 
   val agentDeps by configurations.register("agentDeps") {
     dependencies {
-      "agentDeps"("com.microsoft.azure:applicationinsights-agent:2.5.1") {
+      "agentDeps"("com.microsoft.azure:applicationinsights-agent:2.6.0") {
         isTransitive = false
       }
     }
@@ -132,4 +131,10 @@ tasks {
   }
 
   assemble { dependsOn(copyAgent) }
+
+  bootJar {
+    manifest {
+      attributes("Implementation-Version" to rootProject.version, "Implementation-Title" to rootProject.name)
+    }
+  }
 }

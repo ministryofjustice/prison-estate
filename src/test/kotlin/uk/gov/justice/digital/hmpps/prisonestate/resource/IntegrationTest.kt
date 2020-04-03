@@ -9,9 +9,8 @@ import org.springframework.test.web.reactive.server.WebTestClient
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 abstract class IntegrationTest {
-  @Suppress("unused")
   @Autowired
-  lateinit var webTestClient: WebTestClient
+  internal lateinit var webTestClient: WebTestClient
 
   init {
     // Resolves an issue where Wiremock keeps previous sockets open from other tests causing connection resets
