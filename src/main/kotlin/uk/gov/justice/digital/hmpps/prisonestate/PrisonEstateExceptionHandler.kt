@@ -16,7 +16,10 @@ class PrisonEstateExceptionHandler {
     log.debug("Prison not found exception: {}", e.message)
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
-        .body(ErrorResponse(status = HttpStatus.NOT_FOUND, developerMessage = e.message))
+        .body(ErrorResponse(
+            status = HttpStatus.NOT_FOUND,
+            userMessage = "Prison not found: ${e.message}",
+            developerMessage = e.message))
   }
 
   @ExceptionHandler(ValidationException::class)
@@ -24,11 +27,14 @@ class PrisonEstateExceptionHandler {
     log.info("Validation exception: {}", e.message)
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ErrorResponse(status = HttpStatus.BAD_REQUEST, developerMessage = e.message))
+        .body(ErrorResponse(
+            status = HttpStatus.BAD_REQUEST,
+            userMessage = "Validation failure: ${e.message}",
+            developerMessage = e.message))
   }
 
   companion object {
-    val log = LoggerFactory.getLogger(PrisonEstateExceptionHandler::class.java)
+    private val log = LoggerFactory.getLogger(PrisonEstateExceptionHandler::class.java)
   }
 }
 
