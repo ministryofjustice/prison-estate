@@ -110,6 +110,8 @@ dependencies {
   testImplementation("org.springframework.boot:spring-boot-starter-test") {
     exclude("org.junit.vintage", "junit-vintage-engine")
   }
+  testImplementation("org.junit.vintage:junit-vintage-engine:5.6.2")
+
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
   testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
