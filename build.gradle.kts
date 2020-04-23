@@ -112,6 +112,7 @@ dependencies {
   }
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
   testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+  testImplementation("org.junit.vintage:junit-vintage-engine:5.6.2")
 }
 
 tasks {
