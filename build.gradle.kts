@@ -8,9 +8,9 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter.ISO_DATE
 
 plugins {
-  kotlin("jvm") version "1.3.71"
-  kotlin("plugin.spring") version "1.3.71"
-  kotlin("plugin.jpa") version "1.3.71"
+  kotlin("jvm") version "1.3.72"
+  kotlin("plugin.spring") version "1.3.72"
+  kotlin("plugin.jpa") version "1.3.72"
   id("org.springframework.boot") version "2.2.6.RELEASE"
   id("io.spring.dependency-management") version "1.0.9.RELEASE"
   id("org.owasp.dependencycheck") version "5.3.2.1"
@@ -96,7 +96,7 @@ dependencies {
   implementation("io.springfox:springfox-bean-validators:2.9.2")
 
   runtimeOnly("com.h2database:h2:1.4.200")
-  runtimeOnly("org.flywaydb:flyway-core:6.3.2")
+  runtimeOnly("org.flywaydb:flyway-core:6.4.0")
   runtimeOnly("org.postgresql:postgresql:42.2.12")
 
   implementation("net.logstash.logback:logstash-logback-encoder:6.3")
@@ -105,7 +105,7 @@ dependencies {
   implementation("com.github.timpeeters:spring-boot-graceful-shutdown:2.2.1")
 
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-  implementation("com.google.guava:guava:28.2-jre")
+  implementation("com.google.guava:guava:29.0-jre")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test") {
     exclude("org.junit.vintage", "junit-vintage-engine")
