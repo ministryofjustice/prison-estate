@@ -47,7 +47,7 @@ class PrisonResourceTest : IntegrationTest() {
   }
 
   @Test
-  fun `find by gp practise prison`() {
+  fun `find by gp practice prison`() {
     val prison = Prison("MDI", "Moorland (HMP & YOI)", true)
     prison.gpPractice = PrisonGpPractice("MDI", "Y05537")
     whenever(prisonRepository.findByGpPracticeGpPracticeCode(anyString())).thenReturn(
@@ -60,7 +60,7 @@ class PrisonResourceTest : IntegrationTest() {
   }
 
   @Test
-  fun `find by gp practise find prison no gp practice mapped`() {
+  fun `find by gp practice find prison no gp practice mapped`() {
     val prison = Prison("MDI", "Moorland (HMP & YOI)", true)
     whenever(prisonRepository.findByGpPracticeGpPracticeCode(anyString())).thenReturn(
         Optional.of(prison)
@@ -72,7 +72,7 @@ class PrisonResourceTest : IntegrationTest() {
   }
 
   @Test
-  fun `find by gp practise find prison validation failure`() {
+  fun `find by gp practice find prison validation failure`() {
     webTestClient.get().uri("/prisons/gp-practice/1234567")
         .exchange()
         .expectStatus().isBadRequest
