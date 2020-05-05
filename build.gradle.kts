@@ -4,6 +4,10 @@ plugins {
   kotlin("plugin.jpa") version "1.3.72"
 }
 
+dependencyCheck {
+  suppressionFiles = listOf() // Turn off dependency suppression files - none are currently relevant
+}
+
 configurations {
   implementation { exclude(mapOf("module" to "tomcat-jdbc")) }
 }
