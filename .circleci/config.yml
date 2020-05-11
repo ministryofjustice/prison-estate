@@ -8,7 +8,7 @@ executors:
 
 jobs:
   validate:
-    executor: hmpps/validator
+    executor: hmpps/java
     steps:
       - checkout
       - restore_cache:
@@ -39,6 +39,8 @@ workflows:
           filters:
             tags:
               ignore: /.*/
+      - hmpps/helm_lint:
+          name: helm_lint
       - hmpps/build_docker:
           name: build_docker
           filters:
@@ -54,6 +56,7 @@ workflows:
                 - master
           requires:
             - validate
+            - helm_lint
             - build_docker
       - request-preprod-approval:
           type: approval
@@ -87,4 +90,4 @@ workflows:
                 - master
     jobs:
       - owasp/gradle_owasp_dependency_check:
-          executor: hmpps/validator
+          executor: hmpps/java
