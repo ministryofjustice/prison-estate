@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.backend.wasm.lower.excludeDeclarationsFromCodegen
-
 plugins {
   id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.3.0"
   kotlin("plugin.spring") version "1.3.72"
