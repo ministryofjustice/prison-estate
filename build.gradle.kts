@@ -23,7 +23,7 @@ dependencies {
   implementation("io.springfox:springfox-bean-validators:2.9.2")
 
   runtimeOnly("com.h2database:h2:1.4.200")
-  runtimeOnly("org.flywaydb:flyway-core:6.4.1")
+  runtimeOnly("org.flywaydb:flyway-core:6.4.3")
   runtimeOnly("org.postgresql:postgresql:42.2.12")
 
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
