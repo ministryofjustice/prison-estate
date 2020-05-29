@@ -1,5 +1,5 @@
-graceful:
-  shutdown.enabled: false
+server:
+  shutdown: immediate
 
 management.endpoint:
   health.cache.time-to-live: 0
