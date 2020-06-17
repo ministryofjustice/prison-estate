@@ -1,6 +1,6 @@
 # prison-estate
 
-[![CircleCI](https://circleci.com/gh/ministryofjustice/prison-estate/tree/master.svg?style=svg)](https://circleci.com/gh/ministryofjustice/prison-estate)
+[![CircleCI](https://circleci.com/gh/ministryofjustice/prison-estate/tree/main.svg?style=svg)](https://circleci.com/gh/ministryofjustice/prison-estate)
 [![Known Vulnerabilities](https://snyk.io/test/github/ministryofjustice/prison-estate/badge.svg)](https://snyk.io/test/github/ministryofjustice/prison-estate)
 
 Self-contained fat-jar micro-service to publish mappings between prisons and GP Prescribe Codes
