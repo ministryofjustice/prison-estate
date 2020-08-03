@@ -8,7 +8,7 @@
   <springProperty scope="context" name="app" source="spring.application.name"/>
 
   <springProfile name="dev || stdout">
-    <appender name="consoleAppender" class="ch.qos.logback.core.helpers.NOPAppender" />
+    <appender name="consoleAppender" class="ch.qos.logback.core.helpers.NOPAppender"/>
     <appender name="logAppender" class="ch.qos.logback.core.ConsoleAppender">
       <layout class="ch.qos.logback.classic.PatternLayout">
         <Pattern>${LOG_PATTERN}</Pattern>
@@ -56,6 +56,10 @@
   </logger>
 
   <logger name="org.flywaydb" additivity="false" level="INFO">
+    <appender-ref ref="logAppender"/>
+  </logger>
+
+  <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG">
     <appender-ref ref="logAppender"/>
   </logger>
 
