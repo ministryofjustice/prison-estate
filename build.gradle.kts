@@ -1,5 +1,5 @@
 plugins {
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.4.6"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.4.7"
   kotlin("plugin.spring") version "1.3.72"
   kotlin("plugin.jpa") version "1.3.72"
 }
@@ -18,12 +18,12 @@ dependencies {
 
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
-  implementation("io.springfox:springfox-swagger2:2.9.2")
-  implementation("io.springfox:springfox-swagger-ui:2.9.2")
-  implementation("io.springfox:springfox-bean-validators:2.9.2")
+  implementation("org.springdoc:springdoc-openapi-ui:1.4.3")
+  implementation("org.springdoc:springdoc-openapi-data-rest:1.4.3")
+  implementation("org.springdoc:springdoc-openapi-kotlin:1.4.3")
 
   runtimeOnly("com.h2database:h2:1.4.200")
-  runtimeOnly("org.flywaydb:flyway-core:6.4.4")
+  runtimeOnly("org.flywaydb:flyway-core:6.5.3")
   runtimeOnly("org.postgresql:postgresql:42.2.14")
 
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
