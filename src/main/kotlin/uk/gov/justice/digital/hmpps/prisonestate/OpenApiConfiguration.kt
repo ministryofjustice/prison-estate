@@ -6,7 +6,6 @@ import io.swagger.v3.oas.models.info.Info
 import org.springframework.boot.info.BuildProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.web.filter.CommonsRequestLoggingFilter
 
 
 @Configuration
@@ -21,15 +20,5 @@ class OpenApiConfiguration(buildProperties: BuildProperties) {
           )
               .contact(Contact().name("HMPPS Digital Studio").email("feedback@digital.justice.gov.uk"))
       )
-
-  @Bean
-  fun logFilter(): CommonsRequestLoggingFilter {
-    val filter = CommonsRequestLoggingFilter()
-    filter.setIncludeQueryString(true)
-    filter.setIncludeHeaders(true)
-    filter.setAfterMessagePrefix("REQUEST DATA : ")
-    return filter
-  }
-
 }
 

@@ -59,7 +59,7 @@
     <appender-ref ref="logAppender"/>
   </logger>
 
-  <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG">
+  <logger name="org.apache.catalina.valves.RemoteIpValve" level="DEBUG">
     <appender-ref ref="logAppender"/>
   </logger>
 
