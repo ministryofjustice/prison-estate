@@ -44,8 +44,6 @@ spec:
           ports:
             - containerPort: {{ .Values.image.port }}
               protocol: TCP
-            - containerPort: 5005
-              name: "jvm-debug"
           livenessProbe:
             httpGet:
               path: /health/ping
