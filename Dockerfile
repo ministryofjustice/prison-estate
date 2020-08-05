@@ -33,4 +33,4 @@ COPY --from=builder --chown=appuser:appgroup /app/AI-Agent.xml /app
 
 USER 2000
 
-ENTRYPOINT ["java", "-javaagent:/app/agent.jar", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-javaagent:/app/agent.jar", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "/app/app.jar"]
