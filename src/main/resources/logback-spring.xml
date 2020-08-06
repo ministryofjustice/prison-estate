@@ -59,10 +59,6 @@
     <appender-ref ref="logAppender"/>
   </logger>
 
-  <logger name="org.apache.catalina.valves.RemoteIpValve" level="DEBUG">
-    <appender-ref ref="logAppender"/>
-  </logger>
-
   <root level="INFO">
     <appender-ref ref="logAppender"/>
   </root>
