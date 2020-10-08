@@ -5,6 +5,12 @@
 
 Self-contained fat-jar micro-service to publish mappings between prisons and GP Prescribe Codes
 
+### Code Style & Formatting
+```bash
+./gradlew ktlintApplyToIdea addKtlintFormatGitPreCommitHook
+```
+will apply ktlint styles to intellij and also add a pre-commit hook to format all changed kotlin files.
+
 ### Building
 
 ```bash
@@ -27,7 +33,7 @@ by prison-estate health monitoring (e.g. pager duty) and not other systems who w
 
 ### Updating prison information
 
-Use elite2 to make a call to {{elitehost}}/api/agencies/type/INST?activeOnly=false to get the list of institutions.
+Use Prison API to make a call to {{prisonapihost}}/api/agencies/type/INST?activeOnly=false to get the list of institutions.
 Save this as `all-prisons.json`, then run:
 ```bash
 jq -r '.[] | "INSERT INTO prison VALUES (@" + .agencyId + "@, @" + .description + "@, " + (.active|tostring) + ");"' all-prisons.json | tr @ "'" | sort -k6 > new_prisons.sql

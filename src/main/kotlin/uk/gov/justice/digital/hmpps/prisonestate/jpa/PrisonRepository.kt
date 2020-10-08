@@ -2,7 +2,7 @@ package uk.gov.justice.digital.hmpps.prisonestate.jpa
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.Optional
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.JoinColumn
@@ -17,10 +17,11 @@ interface PrisonRepository : CrudRepository<Prison, String> {
 
 @Entity
 data class Prison(
-    @Id
-    val prisonId: String,
-    val name: String,
-    val active: Boolean) {
+  @Id
+  val prisonId: String,
+  val name: String,
+  val active: Boolean
+) {
 
   @OneToOne
   @JoinColumn("prison_id")
@@ -29,6 +30,7 @@ data class Prison(
 
 @Entity
 data class PrisonGpPractice(
-    @Id
-    val prisonId: String,
-    val gpPracticeCode: String)
+  @Id
+  val prisonId: String,
+  val gpPracticeCode: String
+)
