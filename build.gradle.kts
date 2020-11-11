@@ -1,8 +1,7 @@
 plugins {
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "1.0.6"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "1.1.0"
   kotlin("plugin.spring") version "1.4.10"
   kotlin("plugin.jpa") version "1.4.10"
-  id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
 }
 
 configurations {
@@ -21,7 +20,7 @@ dependencies {
 
   runtimeOnly("com.h2database:h2:1.4.200")
   runtimeOnly("org.flywaydb:flyway-core:6.5.6")
-  runtimeOnly("org.postgresql:postgresql:42.2.16")
+  runtimeOnly("org.postgresql:postgresql:42.2.18")
 
   testImplementation("org.springframework.boot:spring-boot-starter-webflux")
 }
