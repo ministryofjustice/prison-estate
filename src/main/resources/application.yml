@@ -5,7 +5,10 @@ info.app:
 spring:
   application:
     name: prison-estate
-
+  profiles:
+    group:
+      test:
+        - "dev"
   jpa:
     open-in-view: false
     show-sql: false
