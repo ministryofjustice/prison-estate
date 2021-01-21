@@ -13,3 +13,6 @@ spring:
       enabled: true
   jpa:
     show-sql: true
+
+api:
+  base.url: http://localhost:8081
